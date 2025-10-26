@@ -310,7 +310,8 @@ def evaluate(model, dataloader, criterion, src_sp, tgt_sp):
                 ref_ids = [int(x) for x in tgt[i].tolist()
                            if x not in (tgt_sp.bos_id(), tgt_sp.eos_id(), tgt_sp.pad_id())]
                 refs.append(tgt_sp.DecodeIds(ref_ids))
-    bleu = sacrebleu.corpus_bleu(preds, [refs]) if len(preds) > 0 else None
+    # bleu = sacrebleu.corpus_bleu(preds, [refs]) if len(preds) > 0 else None
+    bleu = sacrebleu.corpus_bleu(preds, [refs], force=True)
     return total_loss / len(dataloader), bleu.score if bleu else None
 
 
@@ -395,7 +396,7 @@ def main():
     #    EXAMPLE TRANSLATIONS
     # ---------------------------
     model.eval()
-    sample_src, sample_tgt = next(iter(val_loader))
+    sample_src, sample_tgt, src_lengths = next(iter(val_loader))
     sample_src = sample_src.to(DEVICE)[:8]
     translations = model.translate_greedy(sample_src, src_sp, tgt_sp, MAX_LEN)
     print("\n=== Example translations (greedy) ===")
