@@ -207,10 +207,10 @@ def evaluate_on_test(model, test_fasta, term_to_idx, output_file, device, thresh
 
 
 def main():
-    train_fasta = '/Users/sharmishtaganesh/Desktop/DeepLearning/Lab17/cafa-6-protein-function-prediction/Train/train_sequences.fasta'
-    train_terms = '/Users/sharmishtaganesh/Desktop/DeepLearning/Lab17/cafa-6-protein-function-prediction/Train/train_terms.tsv'
-    test_fasta = '/Users/sharmishtaganesh/Desktop/DeepLearning/Lab17/cafa-6-protein-function-prediction/Test/testsuperset.fasta'
-    output_file =  '/Users/sharmishtaganesh/Desktop/DeepLearning/Lab17/cafa-6-protein-function-prediction/output_transformers.csv'
+    train_fasta = './cafa-6-protein-function-prediction/Train/train_sequences.fasta'
+    train_terms = './cafa-6-protein-function-prediction/Train/train_terms.tsv'
+    test_fasta = './cafa-6-protein-function-prediction/Test/testsuperset.fasta'
+    output_file =  './cafa-6-protein-function-prediction/output_transformers.csv'
 
     print("Loading sequences and annotations...")
     sequences = load_sequences(train_fasta)
